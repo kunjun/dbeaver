@@ -775,7 +775,7 @@ public class EntityEditor extends MultiPageDatabaseEditor
                     new TypeToken<Map<String, EditorDefaults>>(){}.getType());
             }
         } catch (Exception e) {
-            log.error("Error saving tabs configuration", e);
+            log.error("Error loading tabs configuration", e);
         }
         if (pageMap == null) {
             pageMap = new HashMap<>();
@@ -794,7 +794,8 @@ public class EntityEditor extends MultiPageDatabaseEditor
                 configPath,
                 JSONUtils.GSON.toJson(defaultPageMap),
                 StandardCharsets.UTF_8,
-                StandardOpenOption.CREATE);
+                StandardOpenOption.CREATE,
+                StandardOpenOption.TRUNCATE_EXISTING);
         } catch (Exception e) {
             log.error("Error saving tabs configuration", e);
         }
